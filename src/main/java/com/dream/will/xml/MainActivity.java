@@ -107,7 +107,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         refresh = (SwipeRefreshLayout) findViewById(R.id.refresh);
-        refresh.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
+        refresh.setColorSchemeResources(android.R.color.holo_orange_light,android.R.color.holo_blue_light,
+                android.R.color.holo_red_light,  android.R.color.holo_green_light);
         refresh.setRefreshing(true);
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
