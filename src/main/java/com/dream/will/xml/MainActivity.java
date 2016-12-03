@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String value = response.body();
 //                Log.i("TAG", "onResponse: response.body---------" + value);
 //                text.setText(value);
-                //通过JSop解析成Doucment
+                //通过Jsoup解析成Doucment
                 Document document = Jsoup.parse(value);
                 //从doc中拿到class="article block untagged mb15" class中有空格后面是继承关系
                 Elements elementsByClass = document.getElementsByClass("article");
@@ -144,6 +144,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int y = linearLayoutManager.findLastVisibleItemPosition();
                 if (e!=0){
                     floatingActino.setVisibility(View.VISIBLE);
+                }else {
+                    floatingActino.setVisibility(View.GONE);
+                    //按下更新按钮 更新数据
+                    if (buttonPress){
+                        page = 1;
+                        getData();
+                    }
                 }
                 Log.i("TAG", "onScrollStateChanged: ---findFirstCompletelyVisibleItemPosition------" + e);
                 Log.i("TAG", "onScrollStateChanged: ---findFirstVisibleItemPosition------" + r);
@@ -169,14 +176,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    boolean buttonPress= false;
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.floatingActino:
-                refresh.setRefreshing(true);
+//                floatingActino.setVisibility(View.GONE);
+                //按钮按下
+                buttonPress = true;
+                //清除数据
                 isClear = true;
-                page = 1;
-                getData();
+                recyclerView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        //平滑的移动到指定item 带动画
+                        //然后在滑动监听中 更新数据操作
+                        //好处  解决数据更新和recyclerView滑动 冲突带来画面卡顿
+                        recyclerView.smoothScrollToPosition(0);
+                    }
+                });
+                refresh.setRefreshing(true);
+
                 break;
         }
     }

@@ -41,7 +41,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewMHolder> {
         JokeBean jokeBean = data.get(position);
         holder.content.setText(jokeBean.content);
         holder.userName.setText(jokeBean.userName);
-        Glide.with(context).load(jokeBean.userImage).into(holder.userImage);
+        Glide.with(context)
+                .load(jokeBean.userImage)
+                .error(R.drawable.anony)
+                .into(holder.userImage);
 //        Log.i("TAG", "JokeBean: image---------" + jokeBean.type);
         if (jokeBean.type==1){
 //            Log.i("TAG", "JokeBean: image---------" + jokeBean.image);

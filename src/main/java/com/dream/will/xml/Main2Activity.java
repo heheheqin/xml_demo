@@ -51,7 +51,7 @@ public class Main2Activity extends SwipeBackActivity implements View.OnClickList
         //获取  swipeBackLayout
         SwipeBackLayout swipeBackLayout = getSwipeBackLayout();
 //设置 互动的区域
-        swipeBackLayout.setEdgeSize(200);
+        swipeBackLayout.setEdgeSize(300);
 // 设定滑动关闭的方向  下左右
         swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
         Intent i = getIntent();
@@ -126,7 +126,7 @@ public class Main2Activity extends SwipeBackActivity implements View.OnClickList
                 ImageView uImage = (ImageView) viewHolder.findViewBid(R.id.userImage);
                 TextView uName = (TextView) viewHolder.findViewBid(R.id.userName);
                 TextView cText = (TextView) viewHolder.findViewBid(R.id.content);
-                Glide.with(Main2Activity.this).load(commetBean.userImage).into(uImage);
+                Glide.with(Main2Activity.this).load(commetBean.userImage).error(R.drawable.anony).into(uImage);
                 uName.setText(commetBean.userName);
                 cText.setText(commetBean.content);
             }

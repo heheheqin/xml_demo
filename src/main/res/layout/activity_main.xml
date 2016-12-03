@@ -31,6 +31,6 @@
         app:layout_anchor="@id/refresh"
         app:layout_anchorGravity="bottom|right"
         app:pressedTranslationZ="12dp"
-        app:rippleColor="@android:color/black" />
+        app:rippleColor="@android:color/white" />
 
 </android.support.design.widget.CoordinatorLayout>
